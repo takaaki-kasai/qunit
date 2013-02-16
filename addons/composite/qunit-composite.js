@@ -92,7 +92,7 @@ QUnit.testDone(function() {
 	// undo the auto-expansion of failed tests
 	for ( i = 0; i < children.length; i++ ) {
 		if ( children[i].nodeName === "OL" ) {
-			children[i].style.display = "none";
+			addClass( children[i], "qunit-collapsed" );
 		}
 	}
 
@@ -108,5 +108,15 @@ QUnit.testDone(function() {
 
 	current.getElementsByTagName('a')[0].href = src;
 });
+
+function hasClass( elem, name ) {
+	return (" " + elem.className + " ").indexOf(" " + name + " ") > -1;
+}
+
+function addClass( elem, name ) {
+	if ( !hasClass( elem, name ) ) {
+		elem.className += (elem.className ? " " : "") + name;
+	}
+}
 
 }( QUnit ) );
